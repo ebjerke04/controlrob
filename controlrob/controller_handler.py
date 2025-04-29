@@ -33,7 +33,7 @@ class ControllerHandler(Node):
         self.y_limit_min = -0.15
         self.y_limit_max = 0.15
         self.z_limit_min = 0.05
-        self.z_limit_max = 0.14
+        self.z_limit_max = 0.18
         self.gripper_limit_min = 0.0
         self.gripper_limit_max = np.radians(90)
         
