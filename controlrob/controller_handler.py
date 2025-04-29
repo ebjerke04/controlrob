@@ -120,6 +120,7 @@ class ControllerHandler(Node):
                         print(f"Axis {i} ({axis_name}): {axis_value:.2f}")
                         self.prev_axes[i] = axis_value
 
+                    if abs(axis_value) < 0.01: axis_value = 0.0
                     if i == 0:
                         self.displace_x(axis_value * self.speed)
                     elif i == 1:
