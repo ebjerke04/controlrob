@@ -26,7 +26,7 @@ class ControllerHandler(Node):
         self.xyz_goal = [0.165, 0.0, 0.155] # roughly upright neutral with wrist at 45 degrees. Formally: [0.1646718829870224, 0.0, 0.1546700894832611]
         self.speed = 0.004 # in m/(some arbitrary amount of time)
         self.gripper_angle = 0.0
-        self.grip_close_speed = 0.01
+        self.grip_close_speed = 0.05
         
         self.pub_gripper_angle = self.create_publisher(Float64, '/gripper_angle_desired', 1)
 
