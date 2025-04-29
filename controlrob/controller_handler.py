@@ -27,6 +27,15 @@ class ControllerHandler(Node):
         self.speed = 0.004 # in m/(some arbitrary amount of time)
         self.gripper_angle = 0.0
         self.grip_close_speed = 0.05
+
+        self.x_limit_min = 0.08
+        self.x_limit_max = 0.19
+        self.y_limit_min = -0.15
+        self.y_limit_max = 0.15
+        self.z_limit_min = 0.05
+        self.z_limit_max = 0.14
+        self.gripper_limit_min = 0.0
+        self.gripper_limit_max = np.radians(90)
         
         self.pub_gripper_angle = self.create_publisher(Float64, '/gripper_angle_desired', 1)
 
@@ -65,16 +74,28 @@ class ControllerHandler(Node):
 
     #%% Displace the end of the arm      
     def displace_x(self, dx):
-        self.xyz_goal[0] = self.xyz_goal[0] + float(dx)
+        next_x = self.xyz_goal[0] + float(dx)
+
+        if next_x > self.x_limit_min and next_x < self.x_limit_max:
+            self.xyz_goal[0] = next_x
 
     def displace_y(self, dy):
-        self.xyz_goal[1] = self.xyz_goal[1] + float(dy)
+        next_y = self.xyz_goal[1] + float(dy)
+
+        if next_y > self.y_limit_min and next_y < self.y_limit_max:
+            self.xyz_goal[1] = next_y
         
     def displace_z(self, dz):
-        self.xyz_goal[2] = self.xyz_goal[2] + float(dz)
+        next_z = self.xyz_goal[2] + float(dz)
+
+        if next_z > self.z_limit_min and next_z < self.z_limit_max:
+            self.xyz_goal[2] = next_z
 
     def change_grip_angle(self, delta):
-        self.gripper_angle = self.gripper_angle + delta
+        next_gripper_angle = self.gripper_angle + delta
+
+        if next_gripper_angle > self.gripper_limit_min and next_gripper_angle < self.gripper_limit_max:
+            self.gripper_angle = next_gripper_angle
         
     #%% Poll Nintendo Switch Controller for input changes, than change the xyz_goal
     def poll_controller_input(self): 
