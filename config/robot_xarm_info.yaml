@@ -14,9 +14,9 @@
     rotational_limits_joint_01: [-150,150]
     rotational_limits_joint_12: [-180,0]
     rotational_limits_joint_23: [0,180]
-    rotational_limits_joint_34: [-110,110]
-    rotational_limits_joint_45: [-100,100]
-    rotational_limits_joint_56: [-110,111]
+    rotational_limits_joint_34: [-150,150]
+    rotational_limits_joint_45: [-150,150]
+    rotational_limits_joint_56: [-150,150]
     gripper_limits: [0,90] # Gripper Opening Limits (deg) - 0 is closed, 90 is open. 
     # Rotational Axis degrees-to-commands mapping
     # (commands range 0 to 1000)
